@@ -3,7 +3,7 @@ import pickle
 import librosa
 import numpy as np 
 import pandas as pd
-import noisereduce as nr
+from noisereduce import noisereducev1 as nr
 from srmrpy import srmr
 
 def reshape_(x):

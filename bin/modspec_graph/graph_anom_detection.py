@@ -23,7 +23,7 @@ def build_net(X_train):
         min1 = np.argmin(distances)
         edge_dict[e].append(min1)
     G = nx.Graph(edge_dict)
-    sub_graphs = list(nx.connected_component_subgraphs(G))
+    sub_graphs = [G.subgraph(c) for c in nx.connected_components(G)]
     # print('# of sub graphs = {}'.format(len(sub_graphs)))
     sub_graph_dict = {k:list(sub_graphs[k].nodes) for k in range(len(sub_graphs))}
     return sub_graph_dict, G
@@ -46,7 +46,7 @@ def get_anom_score(X_test, means, deviations):
 
 def main(mode):
 
-	machines = ['ToyCar', 'ToyConveyor', 'fan', 'pump', 'slider', 'valve']
+	machines = ['valve']
 
 	reducenoise = 100
 
